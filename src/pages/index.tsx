@@ -45,7 +45,9 @@ const createPayment = async () => {
 
   console.log({ result });
 
-  window.location.href = result.data.body.init_point;
+  setTimeout(() => {
+    window.location.href = result.data.body.init_point;
+  }, 3000);
 };
 
 const IndexPage = () => {
