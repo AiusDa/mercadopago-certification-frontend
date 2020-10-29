@@ -84,7 +84,7 @@ export const SEO: React.FC<DataProps> = ({
       }}
       title={title}
       // titleTemplate={defaultTitle ? `%s | ${defaultTitle}` : ''}
-      titleTemplate='Vendorplace'
+      titleTemplate="Vendorplace"
       meta={[...defaultMetas, ...metas]}
     />
   );
