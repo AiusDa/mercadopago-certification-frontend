@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 
 import Layout from '../components/layout';
-import { SEO } from '../components/seo';
+import { Head } from '../components/head';
 
 const createPayment = async () => {
   const API_URL = process.env.API_URL;
@@ -41,14 +41,13 @@ const createPayment = async () => {
     }
   });
 
-  console.log({ data: result.data });
   window.location.href = result.data.body.init_point;
 };
 
 const IndexPage = () => {
   return (
     <Layout>
-      <SEO title="Home" />
+      <Head pageType="home" />
       <button onClick={() => createPayment()}>Comprar producto</button>
     </Layout>
   );

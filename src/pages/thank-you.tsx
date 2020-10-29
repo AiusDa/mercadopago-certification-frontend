@@ -1,10 +1,9 @@
 import React, { ReactElement } from 'react';
-import { WindowLocation } from '@reach/router';
 import * as queryString from 'query-string';
 
 import Layout from '../components/layout';
-import { SEO } from '../components/seo';
-import { Page, PageProps } from 'gatsby';
+import { Head } from '../components/head';
+import { PageProps } from 'gatsby';
 
 function renderStatus(status: string): ReactElement {
   switch (status) {
@@ -26,7 +25,7 @@ const CheckoutPage: React.FC<PageProps> = ({ location }) => {
   const { collection_status } = params;
   return (
     <Layout>
-      <SEO title="Thank you Page" />
+      <Head />
       {renderStatus(collection_status as string)}
     </Layout>
   );
