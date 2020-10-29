@@ -34,6 +34,8 @@ const createPayment = async () => {
     }
   };
 
+  console.log({ url: `${API_URL}/payment` });
+
   const result = await axios.post(`${API_URL}/payment`, data, {
     headers: {
       'Content-Type': 'application/json',
