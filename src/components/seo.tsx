@@ -14,6 +14,7 @@ type DataProps = {
   lang?: string;
   metas?: MetaProps[];
   title?: string;
+  pageType?: 'home' | 'search' | 'item' | '';
 };
 
 export type MetaProps =
@@ -24,7 +25,8 @@ export const SEO: React.FC<DataProps> = ({
   description = '',
   lang = 'en',
   metas = [],
-  title = ''
+  title = '',
+  pageType = ''
 }) => {
   const { site } = useStaticQuery(
     graphql`
@@ -86,6 +88,11 @@ export const SEO: React.FC<DataProps> = ({
       // titleTemplate={defaultTitle ? `%s | ${defaultTitle}` : ''}
       titleTemplate="Vendorplace"
       meta={[...defaultMetas, ...metas]}
-    />
+    >
+      <script
+        src="https://www.mercadopago.com/v2/security.js"
+        view={pageType}
+      ></script>
+    </Helmet>
   );
 };
