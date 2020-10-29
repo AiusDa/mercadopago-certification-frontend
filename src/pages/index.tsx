@@ -5,7 +5,7 @@ import Layout from '../components/layout';
 import { Head } from '../components/head';
 
 const createPayment = async () => {
-  const API_URL = process.env.API_URL;
+  const API_URL = process.env.GATSBY_API_URL;
   const data = {
     items: [
       {
