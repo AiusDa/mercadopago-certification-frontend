@@ -1,22 +1,57 @@
 import React from 'react';
-import { Link } from 'gatsby';
+import axios from 'axios';
 
 import Layout from '../components/layout';
-import Image from '../components/image';
 import { SEO } from '../components/seo';
 
-const IndexPage = () => (
-  <Layout>
-    <SEO title="Home" />
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-      <Image />
-    </div>
-    <Link to="/page-2/">Go to page 2</Link> <br />
-    <Link to="/using-typescript/">Go to "Using TypeScript"</Link>
-  </Layout>
-);
+const createPayment = async () => {
+  const API_URL = process.env.API_URL;
+  const data = {
+    items: [
+      {
+        id: '1234',
+        title: 'Product title',
+        description: 'Dispositivo móvil de Tienda e-commerce',
+        quantity: 1,
+        currency_id: 'MXN',
+        unit_price: 10.5,
+        external_reference: 'ahidalgo@idealizer.mx'
+      }
+    ],
+    payer: {
+      name: 'Lalo',
+      surname: 'Landa',
+      email: 'test_user_81131286@testuser.com',
+      phone: {
+        area_code: '52',
+        number: 5549737300
+      },
+      address: {
+        zip_code: '03940',
+        street_name: 'Insurgentes Sur',
+        street_number: 1602
+      }
+    }
+  };
+
+  const result = await axios.post(`${API_URL}/payment`, data, {
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json'
+    }
+  });
+
+  console.log({ data: result.data });
+  window.location.href = result.data.body.init_point;
+};
+
+const IndexPage = () => {
+  return (
+    <Layout>
+      <SEO title="Home" />
+      <button onClick={() => createPayment()}>Comprar producto</button>
+    </Layout>
+  );
+};
 
 export default IndexPage;
