@@ -36,13 +36,14 @@ const createPayment = async () => {
 
   console.log({ url: `${API_URL}/payment` });
 
-  const result = await axios.post(`${API_URL}/payment`, data, {
+  const result: any = await axios.post(`${API_URL}/payment`, data, {
     headers: {
       'Content-Type': 'application/json',
       Accept: 'application/json'
     }
   });
 
+  console.log({ id: result.id });
   console.log({ result });
 
   setTimeout(() => {
